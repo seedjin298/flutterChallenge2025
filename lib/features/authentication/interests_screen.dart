@@ -63,7 +63,6 @@ class _InterestsScreenState extends State<InterestsScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Gaps.v20,
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size40,

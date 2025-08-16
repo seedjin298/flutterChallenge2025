@@ -1,5 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/features/authentication/confirmation_code_screen.dart';
 import 'package:day15/features/authentication/customize_experience_screen.dart';
 import 'package:day15/features/authentication/widgets/account_text_input.dart';
 import 'package:day15/features/authentication/widgets/move_screen_button.dart';
@@ -79,6 +80,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
         }
       }
     }
+  }
+
+  void _onSignUpTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ConfirmationCodeScreen(
+          email: formData["Phone number or email address"],
+        ),
+      ),
+    );
   }
 
   @override
@@ -299,7 +310,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Gaps.v16,
                 GestureDetector(
-                  onTap: () {},
+                  onTap: _onSignUpTap,
                   child: MoveScreenButton(
                     text: "Sign up",
                     disabled: false,
