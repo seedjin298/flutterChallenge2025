@@ -145,11 +145,13 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
           padding: const EdgeInsets.symmetric(
             horizontal: Sizes.size28,
           ),
-          child: MoveScreenButton(
-            onTapped: _onNextTapped,
-            text: "Next",
-            disabled: !_isAgreed,
-            color: Colors.black,
+          child: GestureDetector(
+            onTap: () => _onNextTapped(context),
+            child: MoveScreenButton(
+              text: "Next",
+              disabled: !_isAgreed,
+              color: Colors.black,
+            ),
           ),
         ),
       ),

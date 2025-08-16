@@ -1,4 +1,7 @@
+import 'package:day15/features/authentication/interests_detail_screen.dart';
+import 'package:day15/features/authentication/interests_screen.dart';
 import 'package:day15/features/authentication/login_screen.dart';
+import 'package:day15/features/authentication/password_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),
-      home: const LoginScreen(),
+      home: InterestsDetailScreen(),
     );
   }
 }

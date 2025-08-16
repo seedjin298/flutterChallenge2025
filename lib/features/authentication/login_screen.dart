@@ -64,11 +64,13 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
             Gaps.v6,
-            MoveScreenButton(
-              onTapped: _onSignUpTap,
-              text: "Create account",
-              disabled: false,
-              color: Colors.black,
+            GestureDetector(
+              onTap: () => _onSignUpTap(context),
+              child: MoveScreenButton(
+                text: "Create account",
+                disabled: false,
+                color: Colors.black,
+              ),
             ),
             Gaps.v16,
             RichText(

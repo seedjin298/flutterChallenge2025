@@ -298,11 +298,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 Gaps.v16,
-                MoveScreenButton(
-                  onTapped: () {},
-                  text: "Sign up",
-                  disabled: false,
-                  color: Theme.of(context).primaryColor,
+                GestureDetector(
+                  onTap: () {},
+                  child: MoveScreenButton(
+                    text: "Sign up",
+                    disabled: false,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ]
             ],
