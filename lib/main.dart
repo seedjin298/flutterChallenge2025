@@ -4,6 +4,7 @@ import 'package:day15/features/authentication/interests_screen.dart';
 import 'package:day15/features/authentication/login_screen.dart';
 import 'package:day15/features/authentication/password_screen.dart';
 import 'package:day15/features/authentication/sign_up_screen.dart';
+import 'package:day15/features/main_navigation/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,8 +21,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Day 15',
       theme: ThemeData(
         primaryColor: Colors.blue,
+        appBarTheme: AppBarTheme(
+          scrolledUnderElevation: 0.0,
+        ),
       ),
-      home: SignUpScreen(),
+      home: MainNavigationScreen(),
     );
   }
 }
