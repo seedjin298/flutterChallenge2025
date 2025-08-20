@@ -13,7 +13,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _onTap(int index) {
     setState(() {
@@ -72,7 +72,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             NavTab(
               onTap: () => _onTap(2),
               isSelected: _selectedIndex == 2,
-              icon: FontAwesomeIcons.shareFromSquare,
+              icon: _selectedIndex == 2
+                  ? FontAwesomeIcons.solidPenToSquare
+                  : FontAwesomeIcons.penToSquare,
             ),
             NavTab(
               onTap: () => _onTap(3),
