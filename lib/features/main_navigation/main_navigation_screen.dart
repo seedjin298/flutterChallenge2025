@@ -1,6 +1,7 @@
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/main_navigation/temporal_screen.dart';
 import 'package:day15/features/main_navigation/widgets/nav_tab.dart';
+import 'package:day15/features/posts/new_thread_screen.dart';
 import 'package:day15/features/posts/posts_timeline_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,12 +14,20 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onPostTap(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (context) => NewThreadScreen(),
+    );
   }
 
   @override
@@ -32,10 +41,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: TemporalScreen(),
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
             child: TemporalScreen(),
           ),
           Offstage(
@@ -70,7 +75,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               icon: FontAwesomeIcons.magnifyingGlass,
             ),
             NavTab(
-              onTap: () => _onTap(2),
+              onTap: () => _onPostTap(context),
               isSelected: _selectedIndex == 2,
               icon: _selectedIndex == 2
                   ? FontAwesomeIcons.solidPenToSquare

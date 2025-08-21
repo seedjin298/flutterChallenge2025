@@ -1,4 +1,5 @@
 import 'package:day15/constants/gaps.dart';
+import 'package:day15/features/posts/widgets/bottom_sheet_screen.dart';
 import 'package:day15/features/posts/widgets/image_carousel.dart';
 import 'package:day15/features/posts/widgets/reply_timeline.dart';
 import 'package:day15/utils.dart';
@@ -10,6 +11,15 @@ class Thread extends StatelessWidget {
   const Thread({
     super.key,
   });
+
+  void _onEllipsisTap(BuildContext context) {
+    showModalBottomSheet(
+      showDragHandle: true,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      context: context,
+      builder: (context) => BottomSheetScreen(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +66,10 @@ class Thread extends StatelessWidget {
                         children: [
                           Text("${since}m"),
                           Gaps.h12,
-                          const Icon(FontAwesomeIcons.ellipsis, size: 16)
+                          GestureDetector(
+                            onTap: () => _onEllipsisTap(context),
+                            child: Icon(FontAwesomeIcons.ellipsis, size: 16),
+                          ),
                         ],
                       ),
                     ],
