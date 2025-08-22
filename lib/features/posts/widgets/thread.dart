@@ -1,5 +1,5 @@
 import 'package:day15/constants/gaps.dart';
-import 'package:day15/features/posts/widgets/bottom_sheet_screen.dart';
+import 'package:day15/features/posts/bottom_sheet_screen.dart';
 import 'package:day15/features/posts/widgets/image_carousel.dart';
 import 'package:day15/features/posts/widgets/reply_timeline.dart';
 import 'package:day15/utils.dart';

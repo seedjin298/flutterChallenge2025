@@ -6,6 +6,7 @@ class BottomSheetScreen extends StatelessWidget {
   const BottomSheetScreen({super.key});
 
   void _onReportTap(BuildContext context) {
+    Navigator.of(context).pop();
     showModalBottomSheet(
       showDragHandle: true,
       isScrollControlled: true,
