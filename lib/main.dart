@@ -1,4 +1,5 @@
 import 'package:day15/features/main_navigation/main_navigation_screen.dart';
+import 'package:day15/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
