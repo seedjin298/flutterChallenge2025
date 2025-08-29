@@ -124,7 +124,6 @@ class UsersThread extends StatelessWidget {
                   style: const TextStyle(fontSize: 16),
                 ),
                 Gaps.v8,
-                // if (hasImage) ImageCarousel(imageUrls: images),
                 if (hasReply)
                   Container(
                     padding: EdgeInsets.all(Sizes.size10),

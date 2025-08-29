@@ -1,6 +1,7 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/authentication/widgets/interest_detail_button.dart';
+import 'package:day15/features/main_navigation/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -63,6 +64,14 @@ class InterestsDetailScreen extends StatelessWidget {
 
   void _onBackTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _onNextTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MainNavigationScreen(),
+      ),
+    );
   }
 
   @override
@@ -250,7 +259,7 @@ class InterestsDetailScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () => _onNextTap(context),
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: Sizes.size20,
