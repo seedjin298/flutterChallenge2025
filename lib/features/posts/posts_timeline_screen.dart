@@ -1,6 +1,7 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/features/posts/widgets/go_to_top_button.dart';
 import 'package:day15/features/posts/widgets/thread.dart';
+import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -58,8 +59,10 @@ class _PostsTimelineScreenState extends State<PostsTimelineScreen> {
                   'assets/images/thread.svg',
                   width: 32,
                   height: 32,
-                  color: Colors.black,
-                  colorBlendMode: BlendMode.srcIn,
+                  colorFilter: ColorFilter.mode(
+                    isDarkMode(context) ? Colors.white : Colors.black,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
               SliverList(

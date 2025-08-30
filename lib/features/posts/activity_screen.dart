@@ -1,6 +1,7 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/posts/widgets/activity_list_tile.dart';
+import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 
 final tabs = [
@@ -75,7 +76,7 @@ class _ActivityScreenState extends State<ActivityScreen>
               fontWeight: FontWeight.w600,
             ),
             indicatorColor: Colors.transparent,
-            unselectedLabelColor: Colors.black,
+            // unselectedLabelColor: Colors.black,
             labelColor: Theme.of(context).scaffoldBackgroundColor,
             tabs: [
               for (var tab in tabs)
@@ -86,7 +87,9 @@ class _ActivityScreenState extends State<ActivityScreen>
                     width: size.width * 0.25,
                     decoration: BoxDecoration(
                       color: tabs[_tabIndex] == tab
-                          ? Colors.black
+                          ? isDarkMode(context)
+                              ? Colors.white
+                              : Colors.black
                           : Theme.of(context).scaffoldBackgroundColor,
                       border: Border.all(
                         color: tabs[_tabIndex] == tab

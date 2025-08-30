@@ -95,7 +95,13 @@ class _SearchListTileState extends State<SearchListTile> {
                     style: TextStyle(
                       fontSize: Sizes.size16,
                       fontWeight: FontWeight.w700,
-                      color: _isFollowing ? Colors.grey.shade400 : Colors.black,
+                      color: _isFollowing
+                          ? isDarkMode(context)
+                              ? Colors.grey.shade500
+                              : Colors.grey.shade400
+                          : isDarkMode(context)
+                              ? Colors.white
+                              : Colors.black,
                     ),
                   ),
                 ),

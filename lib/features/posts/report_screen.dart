@@ -1,5 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -65,7 +66,9 @@ class ReportScreen extends StatelessWidget {
                         style: TextStyle(
                           height: 1.2,
                           fontSize: Sizes.size14,
-                          color: Colors.black45,
+                          color: isDarkMode(context)
+                              ? Colors.grey.shade500
+                              : Colors.black45,
                         ),
                       ),
                     ],
