@@ -4,6 +4,7 @@ import 'package:day15/features/authentication/widgets/interest_detail_button.dar
 import 'package:day15/features/main_navigation/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 const musicInterests1 = [
   "Rap",
@@ -67,11 +68,7 @@ class InterestsDetailScreen extends StatelessWidget {
   }
 
   void _onNextTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => MainNavigationScreen(),
-      ),
-    );
+    context.pushNamed(MainNavigationScreen.routeName);
   }
 
   @override

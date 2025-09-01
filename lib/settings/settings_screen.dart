@@ -5,8 +5,11 @@ import 'package:day15/settings/widget/setting_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends StatefulWidget {
+  static const routeUrl = "/settings";
+  static const routeName = "settings";
   const SettingsScreen({super.key});
 
   @override
@@ -21,11 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _onPrivacyPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => PrivacyScreen(),
-      ),
-    );
+    context.pushNamed(PrivacyScreen.routeName);
   }
 
   @override

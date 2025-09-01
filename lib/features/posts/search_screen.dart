@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
+  static const routeUrl = "/search";
+  static const routeName = "search";
+
   const SearchScreen({super.key});
 
   @override

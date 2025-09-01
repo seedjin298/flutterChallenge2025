@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PostsTimelineScreen extends StatefulWidget {
+  static const routeUrl = "/";
+  static const routeName = "postsTimeline";
+
   const PostsTimelineScreen({super.key});
 
   @override

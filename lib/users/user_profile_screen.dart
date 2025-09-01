@@ -7,8 +7,11 @@ import 'package:day15/users/widgets/users_thread_timeline.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class UserProfileScreen extends StatefulWidget {
+  static const routeUrl = "/profile";
+  static const routeName = "profile";
   const UserProfileScreen({super.key});
 
   @override
@@ -17,12 +20,7 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   void _onBarPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SettingsScreen(),
-      ),
-    );
+    context.pushNamed(SettingsScreen.routeName);
   }
 
   @override

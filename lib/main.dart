@@ -1,7 +1,4 @@
-import 'package:day15/features/authentication/login_screen.dart';
-import 'package:day15/features/authentication/sign_up_screen.dart';
-import 'package:day15/features/main_navigation/main_navigation_screen.dart';
-import 'package:day15/settings/settings_screen.dart';
+import 'package:day15/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +11,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Day 15',
       themeMode: ThemeMode.system,
       theme: ThemeData(
@@ -68,7 +66,6 @@ class MyApp extends StatelessWidget {
           cursorColor: Colors.blue,
         ),
       ),
-      home: MainNavigationScreen(),
     );
   }
 }
