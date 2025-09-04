@@ -1,8 +1,26 @@
 import 'package:day15/router.dart';
+import 'package:day15/settings/repo/theme_mode_repo.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = ThemeModeRepository(preferences);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ThemeModeViewModel(repository),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +32,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'Flutter Day 15',
-      themeMode: ThemeMode.system,
+      themeMode: context.watch<ThemeModeViewModel>().darkMode
+          ? ThemeMode.dark
+          : ThemeMode.light,
+      themeAnimationDuration: Duration(milliseconds: 100),
+      themeAnimationCurve: Curves.easeInOut,
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.blue,

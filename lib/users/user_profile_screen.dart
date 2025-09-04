@@ -1,6 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/settings/settings_screen.dart';
+import 'package:day15/settings/views/settings_screen.dart';
 import 'package:day15/users/widgets/persistent_tab_bar.dart';
 import 'package:day15/users/widgets/users_reply_timeline.dart';
 import 'package:day15/users/widgets/users_thread_timeline.dart';

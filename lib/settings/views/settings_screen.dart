@@ -1,11 +1,13 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/settings/privacy_screen.dart';
-import 'package:day15/settings/widget/setting_list_tile.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
+import 'package:day15/settings/views/privacy_screen.dart';
+import 'package:day15/settings/views/widget/setting_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeUrl = "/settings";
@@ -30,6 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -107,51 +110,71 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.size20,
                 ),
-                child: ListTile(
-                  visualDensity: VisualDensity(vertical: -1),
-                  contentPadding: EdgeInsets.zero,
-                  splashColor: Colors.transparent,
-                  onTap: () {
-                    setState(() {
-                      _isLogOutPressed = true;
-                    });
-                    showCupertinoDialog(
-                      context: context,
-                      builder: (context) => CupertinoAlertDialog(
-                        title: Text("Are you sure?"),
-                        actions: [
-                          CupertinoDialogAction(
-                            onPressed: () {
-                              setState(() {
-                                _isLogOutPressed = false;
-                              });
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("No"),
-                          ),
-                          CupertinoDialogAction(
-                            onPressed: () {
-                              setState(() {
-                                _isLogOutPressed = false;
-                              });
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("Yes"),
-                          ),
-                        ],
+                child: Column(
+                  children: [
+                    SwitchListTile.adaptive(
+                      contentPadding: EdgeInsets.zero,
+                      value: isDarkMode,
+                      onChanged: (value) {
+                        context.read<ThemeModeViewModel>().setDarkMode(value);
+                        setState(() {});
+                      },
+                      title: Text(
+                        "Change to ${isDarkMode ? "Light" : "Dark"} Mode",
+                        style: TextStyle(
+                          fontSize: Sizes.size18,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    );
-                  },
-                  title: Text(
-                    "Log out",
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: Sizes.size18,
-                      fontWeight: FontWeight.w500,
                     ),
-                  ),
-                  trailing:
-                      _isLogOutPressed ? CupertinoActivityIndicator() : null,
+                    ListTile(
+                      visualDensity: VisualDensity(vertical: -1),
+                      contentPadding: EdgeInsets.zero,
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        setState(() {
+                          _isLogOutPressed = true;
+                        });
+                        showCupertinoDialog(
+                          context: context,
+                          builder: (context) => CupertinoAlertDialog(
+                            title: Text("Are you sure?"),
+                            actions: [
+                              CupertinoDialogAction(
+                                onPressed: () {
+                                  setState(() {
+                                    _isLogOutPressed = false;
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("No"),
+                              ),
+                              CupertinoDialogAction(
+                                onPressed: () {
+                                  setState(() {
+                                    _isLogOutPressed = false;
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Yes"),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      title: Text(
+                        "Log out",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: Sizes.size18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      trailing: _isLogOutPressed
+                          ? CupertinoActivityIndicator()
+                          : null,
+                    ),
+                  ],
                 ),
               ),
             ],

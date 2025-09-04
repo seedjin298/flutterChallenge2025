@@ -1,6 +1,6 @@
 import 'package:day15/features/main_navigation/main_navigation_screen.dart';
-import 'package:day15/settings/privacy_screen.dart';
-import 'package:day15/settings/settings_screen.dart';
+import 'package:day15/settings/views/privacy_screen.dart';
+import 'package:day15/settings/views/settings_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
