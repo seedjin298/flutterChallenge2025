@@ -1,9 +1,10 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/features/posts/widgets/go_to_top_button.dart';
 import 'package:day15/features/posts/widgets/thread.dart';
-import 'package:day15/utils.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class PostsTimelineScreen extends StatefulWidget {
   static const routeUrl = "/";
@@ -47,6 +48,7 @@ class _PostsTimelineScreenState extends State<PostsTimelineScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,
@@ -63,7 +65,7 @@ class _PostsTimelineScreenState extends State<PostsTimelineScreen> {
                   width: 32,
                   height: 32,
                   colorFilter: ColorFilter.mode(
-                    isDarkMode(context) ? Colors.white : Colors.black,
+                    isDarkMode ? Colors.white : Colors.black,
                     BlendMode.srcIn,
                   ),
                 ),

@@ -1,7 +1,8 @@
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/posts/report_screen.dart';
-import 'package:day15/utils.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BottomSheetScreen extends StatelessWidget {
   const BottomSheetScreen({super.key});
@@ -20,6 +21,7 @@ class BottomSheetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return SizedBox(
       height: size.height * 0.4,
       child: Scaffold(
@@ -36,16 +38,14 @@ class BottomSheetScreen extends StatelessWidget {
                       left: Sizes.size16,
                     ),
                     decoration: BoxDecoration(
-                      color: isDarkMode(context)
-                          ? Colors.grey.shade900
-                          : Colors.black12,
+                      color: isDarkMode ? Colors.grey.shade900 : Colors.black12,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(Sizes.size20),
                         topRight: Radius.circular(Sizes.size20),
                       ),
                       border: Border(
                         bottom: BorderSide(
-                          color: isDarkMode(context)
+                          color: isDarkMode
                               ? Colors.grey.shade900
                               : Colors.black12,
                           width: 0.8,
@@ -68,9 +68,7 @@ class BottomSheetScreen extends StatelessWidget {
                       left: Sizes.size16,
                     ),
                     decoration: BoxDecoration(
-                      color: isDarkMode(context)
-                          ? Colors.grey.shade900
-                          : Colors.black12,
+                      color: isDarkMode ? Colors.grey.shade900 : Colors.black12,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(Sizes.size20),
                         bottomRight: Radius.circular(Sizes.size20),
@@ -99,16 +97,14 @@ class BottomSheetScreen extends StatelessWidget {
                       left: Sizes.size16,
                     ),
                     decoration: BoxDecoration(
-                      color: isDarkMode(context)
-                          ? Colors.grey.shade900
-                          : Colors.black12,
+                      color: isDarkMode ? Colors.grey.shade900 : Colors.black12,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(Sizes.size20),
                         topRight: Radius.circular(Sizes.size20),
                       ),
                       border: Border(
                         bottom: BorderSide(
-                            color: isDarkMode(context)
+                            color: isDarkMode
                                 ? Colors.grey.shade900
                                 : Colors.black12,
                             width: 0.8),
@@ -132,9 +128,8 @@ class BottomSheetScreen extends StatelessWidget {
                         left: Sizes.size16,
                       ),
                       decoration: BoxDecoration(
-                        color: isDarkMode(context)
-                            ? Colors.grey.shade900
-                            : Colors.black12,
+                        color:
+                            isDarkMode ? Colors.grey.shade900 : Colors.black12,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(Sizes.size20),
                           bottomRight: Radius.circular(Sizes.size20),

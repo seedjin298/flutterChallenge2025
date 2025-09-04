@@ -1,8 +1,9 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/utils.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 const List<String> _reportElements = [
   "I just don't like it",
@@ -23,6 +24,7 @@ class ReportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return SizedBox(
       height: size.height * 0.7,
       child: Scaffold(
@@ -66,7 +68,7 @@ class ReportScreen extends StatelessWidget {
                         style: TextStyle(
                           height: 1.2,
                           fontSize: Sizes.size14,
-                          color: isDarkMode(context)
+                          color: isDarkMode
                               ? Colors.grey.shade500
                               : Colors.black45,
                         ),

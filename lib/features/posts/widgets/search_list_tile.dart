@@ -1,9 +1,11 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:day15/utils.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SearchListTile extends StatefulWidget {
   const SearchListTile({
@@ -29,6 +31,7 @@ class _SearchListTileState extends State<SearchListTile> {
     final userName = faker.internet.userName();
     final followers = random.integer(1000, min: 10);
     final hasAvatar = random.boolean();
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return ListTile(
       titleAlignment: ListTileTitleAlignment.top,
       contentPadding: EdgeInsets.only(left: Sizes.size20),
@@ -96,10 +99,10 @@ class _SearchListTileState extends State<SearchListTile> {
                       fontSize: Sizes.size16,
                       fontWeight: FontWeight.w700,
                       color: _isFollowing
-                          ? isDarkMode(context)
+                          ? isDarkMode
                               ? Colors.grey.shade500
                               : Colors.grey.shade400
-                          : isDarkMode(context)
+                          : isDarkMode
                               ? Colors.white
                               : Colors.black,
                     ),

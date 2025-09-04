@@ -1,8 +1,9 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/posts/widgets/activity_list_tile.dart';
-import 'package:day15/utils.dart';
+import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 final tabs = [
   "All",
@@ -49,6 +50,7 @@ class _ActivityScreenState extends State<ActivityScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
@@ -90,7 +92,7 @@ class _ActivityScreenState extends State<ActivityScreen>
                     width: size.width * 0.25,
                     decoration: BoxDecoration(
                       color: tabs[_tabIndex] == tab
-                          ? isDarkMode(context)
+                          ? isDarkMode
                               ? Colors.white
                               : Colors.black
                           : Theme.of(context).scaffoldBackgroundColor,
