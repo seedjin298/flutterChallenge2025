@@ -5,20 +5,21 @@ import 'package:day15/settings/views/privacy_screen.dart';
 import 'package:day15/settings/views/widget/setting_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   static const routeUrl = "/settings";
   static const routeName = "settings";
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  SettingsScreenState createState() => SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _isLogOutPressed = false;
 
   void _onBackPressed() {
@@ -32,7 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return Scaffold(
       appBar: AppBar(
         title: Text(

@@ -2,8 +2,8 @@ import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 const List<String> _reportElements = [
   "I just don't like it",
@@ -18,13 +18,13 @@ const List<String> _reportElements = [
   "Nudity or sexual activity",
 ];
 
-class ReportScreen extends StatelessWidget {
+class ReportScreen extends ConsumerWidget {
   const ReportScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
-    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return SizedBox(
       height: size.height * 0.7,
       child: Scaffold(

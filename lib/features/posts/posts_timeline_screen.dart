@@ -3,20 +3,20 @@ import 'package:day15/features/posts/widgets/go_to_top_button.dart';
 import 'package:day15/features/posts/widgets/thread.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
-class PostsTimelineScreen extends StatefulWidget {
+class PostsTimelineScreen extends ConsumerStatefulWidget {
   static const routeUrl = "/";
   static const routeName = "postsTimeline";
 
   const PostsTimelineScreen({super.key});
 
   @override
-  State<PostsTimelineScreen> createState() => _PostsTimelineScreenState();
+  PostsTimelineScreenState createState() => PostsTimelineScreenState();
 }
 
-class _PostsTimelineScreenState extends State<PostsTimelineScreen> {
+class PostsTimelineScreenState extends ConsumerState<PostsTimelineScreen> {
   final ScrollController _scrollController = ScrollController();
 
   bool _showModal = false;
@@ -48,7 +48,7 @@ class _PostsTimelineScreenState extends State<PostsTimelineScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,

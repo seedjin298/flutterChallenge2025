@@ -2,7 +2,7 @@ import 'package:day15/router.dart';
 import 'package:day15/settings/repo/theme_mode_repo.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
@@ -12,10 +12,10 @@ void main() async {
   final repository = ThemeModeRepository(preferences);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => ThemeModeViewModel(repository),
+    ProviderScope(
+      overrides: [
+        themeModeProvider.overrideWith(
+          () => ThemeModeViewModel(repository),
         ),
       ],
       child: const MyApp(),
@@ -23,16 +23,16 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: router,
       title: 'Flutter Day 15',
-      themeMode: context.watch<ThemeModeViewModel>().darkMode
+      themeMode: ref.watch(themeModeProvider).darkMode
           ? ThemeMode.dark
           : ThemeMode.light,
       themeAnimationDuration: Duration(milliseconds: 100),

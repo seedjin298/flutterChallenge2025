@@ -3,7 +3,7 @@ import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/posts/widgets/activity_list_tile.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final tabs = [
   "All",
@@ -15,17 +15,17 @@ final tabs = [
   "Brands",
 ];
 
-class ActivityScreen extends StatefulWidget {
+class ActivityScreen extends ConsumerStatefulWidget {
   static const routeUrl = "/activity";
   static const routeName = "activity";
 
   const ActivityScreen({super.key});
 
   @override
-  State<ActivityScreen> createState() => _ActivityScreenState();
+  ActivityScreenState createState() => ActivityScreenState();
 }
 
-class _ActivityScreenState extends State<ActivityScreen>
+class ActivityScreenState extends ConsumerState<ActivityScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -50,7 +50,7 @@ class _ActivityScreenState extends State<ActivityScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(

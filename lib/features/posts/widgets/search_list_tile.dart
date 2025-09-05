@@ -4,19 +4,19 @@ import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:day15/utils.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
-class SearchListTile extends StatefulWidget {
+class SearchListTile extends ConsumerStatefulWidget {
   const SearchListTile({
     super.key,
   });
 
   @override
-  State<SearchListTile> createState() => _SearchListTileState();
+  SearchListTileState createState() => SearchListTileState();
 }
 
-class _SearchListTileState extends State<SearchListTile> {
+class SearchListTileState extends ConsumerState<SearchListTile> {
   bool _isFollowing = false;
 
   void _onFollowTap() {
@@ -31,7 +31,7 @@ class _SearchListTileState extends State<SearchListTile> {
     final userName = faker.internet.userName();
     final followers = random.integer(1000, min: 10);
     final hasAvatar = random.boolean();
-    final isDarkMode = context.watch<ThemeModeViewModel>().darkMode;
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return ListTile(
       titleAlignment: ListTileTitleAlignment.top,
       contentPadding: EdgeInsets.only(left: Sizes.size20),
