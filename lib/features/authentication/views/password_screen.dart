@@ -1,18 +1,19 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/interests_screen.dart';
-import 'package:day15/features/authentication/widgets/move_screen_button.dart';
+import 'package:day15/features/authentication/view_models/signup_view_model.dart';
+import 'package:day15/features/authentication/views/widgets/move_screen_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PasswordScreen extends StatefulWidget {
+class PasswordScreen extends ConsumerStatefulWidget {
   const PasswordScreen({super.key});
 
   @override
-  State<PasswordScreen> createState() => _PasswordScreenState();
+  PasswordScreenState createState() => PasswordScreenState();
 }
 
-class _PasswordScreenState extends State<PasswordScreen> {
+class PasswordScreenState extends ConsumerState<PasswordScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
@@ -38,11 +39,13 @@ class _PasswordScreenState extends State<PasswordScreen> {
   void _onNextTapped() {
     if (_formData['password'] != null &&
         _isPasswordValid(_formData["password"]) == null) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => InterestsScreen(),
-        ),
-      );
+      final state = ref.read(signUpForm.notifier).state;
+      ref.read(signUpForm.notifier).state = {
+        ...state,
+        "password": _formData['password']
+      };
+      ref.read(signUpProvider.notifier).signUp(context);
+      // context.goNamed(InterestsScreen.routeName);
     }
   }
 

@@ -1,23 +1,25 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/confirmation_code_screen.dart';
-import 'package:day15/features/authentication/customize_experience_screen.dart';
-import 'package:day15/features/authentication/widgets/account_text_input.dart';
-import 'package:day15/features/authentication/widgets/move_screen_button.dart';
-import 'package:day15/features/authentication/widgets/screen_title.dart';
+import 'package:day15/features/authentication/view_models/signup_view_model.dart';
+import 'package:day15/features/authentication/views/confirmation_code_screen.dart';
+import 'package:day15/features/authentication/views/customize_experience_screen.dart';
+import 'package:day15/features/authentication/views/widgets/account_text_input.dart';
+import 'package:day15/features/authentication/views/widgets/move_screen_button.dart';
+import 'package:day15/features/authentication/views/widgets/screen_title.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends ConsumerState<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _socialMediaController = TextEditingController();
@@ -83,6 +85,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onSignUpTap() {
+    ref.read(signUpForm.notifier).state = {
+      "email": formData["Phone number or email address"]
+    };
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => ConfirmationCodeScreen(

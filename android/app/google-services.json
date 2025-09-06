@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "415353143568",
+    "project_id": "flutter-challenge-2025",
+    "storage_bucket": "flutter-challenge-2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415353143568:android:85a99a24fd7fe704f2e595",
+        "android_client_info": {
+          "package_name": "com.example.day15"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANdS5upyZA9cEaCFMcVSwfUTcx6XCTEMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

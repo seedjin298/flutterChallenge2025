@@ -1,6 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/widgets/interest_detail_button.dart';
+import 'package:day15/features/authentication/views/widgets/interest_detail_button.dart';
 import 'package:day15/features/main_navigation/main_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -68,7 +68,7 @@ class InterestsDetailScreen extends StatelessWidget {
   }
 
   void _onNextTap(BuildContext context) {
-    context.pushNamed(MainNavigationScreen.routeName);
+    context.goNamed(MainNavigationScreen.routeName);
   }
 
   @override

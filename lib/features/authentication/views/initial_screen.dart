@@ -1,14 +1,19 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/sign_up_screen.dart';
-import 'package:day15/features/authentication/widgets/auth_button.dart';
-import 'package:day15/features/authentication/widgets/move_screen_button.dart';
-import 'package:day15/features/authentication/widgets/screen_title.dart';
+import 'package:day15/features/authentication/views/login_screen.dart';
+import 'package:day15/features/authentication/views/sign_up_screen.dart';
+import 'package:day15/features/authentication/views/widgets/auth_button.dart';
+import 'package:day15/features/authentication/views/widgets/move_screen_button.dart';
+import 'package:day15/features/authentication/views/widgets/screen_title.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class InitialScreen extends StatelessWidget {
+  static String routeUrl = "/";
+  static String routeName = "initial";
+
+  const InitialScreen({super.key});
 
   void _onSignUpTap(BuildContext context) {
     Navigator.of(context).push(
@@ -16,6 +21,10 @@ class LoginScreen extends StatelessWidget {
         builder: (context) => SignUpScreen(),
       ),
     );
+  }
+
+  void _onLoginTap(BuildContext context) {
+    context.goNamed(LoginScreen.routeName);
   }
 
   @override
@@ -119,10 +128,13 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   "Have an account already?",
                 ),
-                Text(
-                  "Log in",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                GestureDetector(
+                  onTap: () => _onLoginTap(context),
+                  child: Text(
+                    "Log in",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
               ],

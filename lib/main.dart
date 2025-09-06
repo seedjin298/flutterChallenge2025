@@ -1,12 +1,18 @@
+import 'package:day15/firebase_options.dart';
 import 'package:day15/router.dart';
 import 'package:day15/settings/repo/theme_mode_repo.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final preferences = await SharedPreferences.getInstance();
   final repository = ThemeModeRepository(preferences);
@@ -30,7 +36,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       title: 'Flutter Day 15',
       themeMode: ref.watch(themeModeProvider).darkMode
           ? ThemeMode.dark

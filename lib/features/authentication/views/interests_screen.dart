@@ -1,10 +1,13 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/interests_detail_screen.dart';
+import 'package:day15/features/authentication/views/interests_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InterestsScreen extends StatefulWidget {
+  static const String routeName = "interests";
+  static const String routeUrl = "/interests";
+
   const InterestsScreen({super.key});
 
   @override

@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PostsTimelineScreen extends ConsumerStatefulWidget {
-  static const routeUrl = "/";
+  static const routeUrl = "/home";
   static const routeName = "postsTimeline";
 
   const PostsTimelineScreen({super.key});

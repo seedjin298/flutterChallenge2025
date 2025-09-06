@@ -1,5 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/features/authentication/repo/authentication_repo.dart';
 import 'package:day15/settings/view_models/theme_mode_view_model.dart';
 import 'package:day15/settings/views/privacy_screen.dart';
 import 'package:day15/settings/views/widget/setting_list_tile.dart';
@@ -155,7 +156,8 @@ class SettingsScreenState extends ConsumerState<SettingsScreen> {
                                   setState(() {
                                     _isLogOutPressed = false;
                                   });
-                                  Navigator.of(context).pop();
+                                  ref.read(authRepo).signOut();
+                                  context.go("/");
                                 },
                                 child: Text("Yes"),
                               ),

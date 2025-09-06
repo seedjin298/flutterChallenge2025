@@ -1,7 +1,7 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/authentication/password_screen.dart';
-import 'package:day15/features/authentication/widgets/code_digit_form.dart';
+import 'package:day15/features/authentication/views/password_screen.dart';
+import 'package:day15/features/authentication/views/widgets/code_digit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -31,6 +31,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
 
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
+    setState(() {});
   }
 
   void _onNextTap() {
@@ -56,6 +57,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(formData.length);
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
@@ -167,7 +169,7 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                   ],
                 ),
                 Positioned(
-                  bottom: Sizes.size20,
+                  bottom: Sizes.size40,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
