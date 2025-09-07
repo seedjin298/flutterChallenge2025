@@ -1,7 +1,7 @@
 import 'package:day15/firebase_options.dart';
 import 'package:day15/router.dart';
-import 'package:day15/settings/repo/theme_mode_repo.dart';
-import 'package:day15/settings/view_models/theme_mode_view_model.dart';
+import 'package:day15/features/settings/repo/theme_mode_repo.dart';
+import 'package:day15/features/settings/view_models/theme_mode_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

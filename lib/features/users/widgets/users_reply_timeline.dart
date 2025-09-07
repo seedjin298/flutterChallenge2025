@@ -1,9 +1,9 @@
 import 'package:day15/constants/gaps.dart';
-import 'package:day15/users/widgets/users_thread.dart';
+import 'package:day15/features/users/widgets/users_thread.dart';
 import 'package:flutter/material.dart';
 
-class UsersThreadTimeline extends StatelessWidget {
-  const UsersThreadTimeline({
+class UsersReplyTimeline extends StatelessWidget {
+  const UsersReplyTimeline({
     super.key,
   });
 
@@ -13,7 +13,7 @@ class UsersThreadTimeline extends StatelessWidget {
       children: [
         Gaps.v10,
         UsersThread(
-          isReply: false,
+          isReply: true,
         ),
         Gaps.v10,
         Divider(),

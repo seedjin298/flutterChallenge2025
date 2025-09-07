@@ -1,7 +1,7 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/posts/widgets/activity_list_tile.dart';
-import 'package:day15/settings/view_models/theme_mode_view_model.dart';
+import 'package:day15/features/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

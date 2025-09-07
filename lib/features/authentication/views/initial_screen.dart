@@ -16,11 +16,7 @@ class InitialScreen extends StatelessWidget {
   const InitialScreen({super.key});
 
   void _onSignUpTap(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => SignUpScreen(),
-      ),
-    );
+    context.pushNamed(SignUpScreen.routeName);
   }
 
   void _onLoginTap(BuildContext context) {

@@ -1,10 +1,11 @@
 import 'package:day15/features/authentication/repo/authentication_repo.dart';
+import 'package:day15/features/authentication/views/sign_up_screen.dart';
 import 'package:day15/features/authentication/views/initial_screen.dart';
-import 'package:day15/features/authentication/views/interests_screen.dart';
+import 'package:day15/features/onboarding/interests_screen.dart';
 import 'package:day15/features/authentication/views/login_screen.dart';
 import 'package:day15/features/main_navigation/main_navigation_screen.dart';
-import 'package:day15/settings/views/privacy_screen.dart';
-import 'package:day15/settings/views/settings_screen.dart';
+import 'package:day15/features/settings/views/privacy_screen.dart';
+import 'package:day15/features/settings/views/settings_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,7 +16,8 @@ final routerProvider = Provider((ref) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
         if (state.subloc != LoginScreen.routeUrl &&
-            state.subloc != InitialScreen.routeUrl) {
+            state.subloc != InitialScreen.routeUrl &&
+            state.subloc != SignUpScreen.routeUrl) {
           return InitialScreen.routeUrl;
         }
       }
@@ -26,6 +28,11 @@ final routerProvider = Provider((ref) {
         name: InitialScreen.routeName,
         path: InitialScreen.routeUrl,
         builder: (context, state) => InitialScreen(),
+      ),
+      GoRoute(
+        name: SignUpScreen.routeName,
+        path: SignUpScreen.routeUrl,
+        builder: (context, state) => SignUpScreen(),
       ),
       GoRoute(
         name: LoginScreen.routeName,

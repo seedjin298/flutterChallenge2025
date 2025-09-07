@@ -1,9 +1,9 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/settings/views/settings_screen.dart';
-import 'package:day15/users/widgets/persistent_tab_bar.dart';
-import 'package:day15/users/widgets/users_reply_timeline.dart';
-import 'package:day15/users/widgets/users_thread_timeline.dart';
+import 'package:day15/features/settings/views/settings_screen.dart';
+import 'package:day15/features/users/widgets/persistent_tab_bar.dart';
+import 'package:day15/features/users/widgets/users_reply_timeline.dart';
+import 'package:day15/features/users/widgets/users_thread_timeline.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

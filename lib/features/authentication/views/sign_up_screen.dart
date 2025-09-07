@@ -2,7 +2,7 @@ import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/authentication/view_models/signup_view_model.dart';
 import 'package:day15/features/authentication/views/confirmation_code_screen.dart';
-import 'package:day15/features/authentication/views/customize_experience_screen.dart';
+import 'package:day15/features/onboarding/customize_experience_screen.dart';
 import 'package:day15/features/authentication/views/widgets/account_text_input.dart';
 import 'package:day15/features/authentication/views/widgets/move_screen_button.dart';
 import 'package:day15/features/authentication/views/widgets/screen_title.dart';
@@ -13,6 +13,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
+  static final routeUrl = "/signin";
+  static final routeName = "signUp";
+
   const SignUpScreen({super.key});
 
   @override

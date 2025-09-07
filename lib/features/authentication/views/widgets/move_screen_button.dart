@@ -1,7 +1,9 @@
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/features/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MoveScreenButton extends StatelessWidget {
+class MoveScreenButton extends ConsumerWidget {
   final String text;
   final bool disabled;
   final Color color;
@@ -14,7 +16,8 @@ class MoveScreenButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.watch(themeModeProvider).darkMode;
     return FractionallySizedBox(
       widthFactor: 1,
       child: AnimatedContainer(
@@ -24,7 +27,11 @@ class MoveScreenButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          color: disabled ? Colors.grey.shade400 : color,
+          color: disabled
+              ? isDarkMode
+                  ? Colors.grey.shade800
+                  : Colors.grey.shade300
+              : Theme.of(context).primaryColor,
         ),
         duration: Duration(milliseconds: 300),
         child: Text(

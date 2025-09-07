@@ -1,6 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/settings/views/widget/privacy_list_tile.dart';
+import 'package:day15/features/settings/views/widget/privacy_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

@@ -4,7 +4,7 @@ import 'package:day15/features/posts/activity_screen.dart';
 import 'package:day15/features/posts/new_thread_screen.dart';
 import 'package:day15/features/posts/posts_timeline_screen.dart';
 import 'package:day15/features/posts/search_screen.dart';
-import 'package:day15/users/user_profile_screen.dart';
+import 'package:day15/features/users/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';

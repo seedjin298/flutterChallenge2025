@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:day15/features/authentication/repo/authentication_repo.dart';
-import 'package:day15/features/authentication/views/interests_screen.dart';
+import 'package:day15/features/onboarding/interests_screen.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

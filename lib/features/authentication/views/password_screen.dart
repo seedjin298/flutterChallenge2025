@@ -17,12 +17,8 @@ class PasswordScreenState extends ConsumerState<PasswordScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
-  String? _isPasswordValid(String? value) {
-    if (value == null) return null;
-    if (_formData['password']!.length < 8) {
-      return "Password should be 8 characters or more.";
-    }
-    return null;
+  bool _isPasswordValid(String? value) {
+    return value != null && value.length >= 8;
   }
 
   bool _obscureText = true;
@@ -38,7 +34,7 @@ class PasswordScreenState extends ConsumerState<PasswordScreen> {
 
   void _onNextTapped() {
     if (_formData['password'] != null &&
-        _isPasswordValid(_formData["password"]) == null) {
+        _isPasswordValid(_formData["password"])) {
       final state = ref.read(signUpForm.notifier).state;
       ref.read(signUpForm.notifier).state = {
         ...state,
@@ -93,7 +89,12 @@ class PasswordScreenState extends ConsumerState<PasswordScreen> {
                       _formData['password'] = value;
                     });
                   },
-                  validator: _isPasswordValid,
+                  validator: (value) {
+                    if (value != null && (value.isEmpty || value.length < 8)) {
+                      return "Password should be 8 characters or more.";
+                    }
+                    return null;
+                  },
                   obscureText: _obscureText,
                   autocorrect: false,
                   decoration: InputDecoration(
@@ -113,8 +114,7 @@ class PasswordScreenState extends ConsumerState<PasswordScreen> {
                           ),
                         ),
                         if (_formData['password'] != null &&
-                            _isPasswordValid(_formData["password"]) ==
-                                null) ...[
+                            _isPasswordValid(_formData["password"])) ...[
                           Gaps.h10,
                           FaIcon(
                             FontAwesomeIcons.solidCircleCheck,
@@ -143,8 +143,8 @@ class PasswordScreenState extends ConsumerState<PasswordScreen> {
                   onTap: _onNextTapped,
                   child: MoveScreenButton(
                     text: "Next",
-                    disabled: !(_formData['password'] != null &&
-                        _isPasswordValid(_formData["password"]) == null),
+                    disabled: !_isPasswordValid(_formData["password"]) ||
+                        ref.watch(signUpProvider).isLoading,
                     color: Colors.black,
                   ),
                 ),

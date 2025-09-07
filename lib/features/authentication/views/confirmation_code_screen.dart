@@ -57,7 +57,6 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(formData.length);
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
