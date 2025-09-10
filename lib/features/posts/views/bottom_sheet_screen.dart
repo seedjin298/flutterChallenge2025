@@ -1,5 +1,5 @@
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/posts/report_screen.dart';
+import 'package:day15/features/posts/views/report_screen.dart';
 import 'package:day15/features/settings/view_models/theme_mode_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,5 +1,5 @@
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/posts/widgets/reply_circle_avatars.dart';
+import 'package:day15/features/posts/views/widgets/reply_circle_avatars.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

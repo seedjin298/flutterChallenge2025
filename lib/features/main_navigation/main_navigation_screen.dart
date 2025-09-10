@@ -1,9 +1,9 @@
 import 'package:day15/constants/sizes.dart';
 import 'package:day15/features/main_navigation/widgets/nav_tab.dart';
-import 'package:day15/features/posts/activity_screen.dart';
-import 'package:day15/features/posts/new_thread_screen.dart';
-import 'package:day15/features/posts/posts_timeline_screen.dart';
-import 'package:day15/features/posts/search_screen.dart';
+import 'package:day15/features/posts/views/activity_screen.dart';
+import 'package:day15/features/posts/views/new_thread_screen.dart';
+import 'package:day15/features/posts/views/posts_timeline_screen.dart';
+import 'package:day15/features/posts/views/search_screen.dart';
 import 'package:day15/features/users/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

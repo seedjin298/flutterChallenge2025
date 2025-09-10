@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../utils.dart';
+import '../../../../utils.dart';
 import '../border_white.dart';
 
 class GoToTopButton extends StatelessWidget {

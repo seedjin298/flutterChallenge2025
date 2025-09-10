@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:day15/features/authentication/repo/authentication_repo.dart';
 import 'package:day15/features/onboarding/interests_screen.dart';
+import 'package:day15/features/users/view_models/users_view_model.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,12 +19,14 @@ class SignupViewModel extends AsyncNotifier<void> {
   Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
-    state = await AsyncValue.guard(
-      () async => await _authRepo.emailSignUp(
+    final users = ref.read(usersProvider.notifier);
+    state = await AsyncValue.guard(() async {
+      final userCredential = await _authRepo.emailSignUp(
         form["email"],
         form["password"],
-      ),
-    );
+      );
+      await users.createProfile(userCredential);
+    });
     if (state.hasError) {
       showFirebaseErrorSnack(
         context,

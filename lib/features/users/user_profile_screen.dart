@@ -6,19 +6,20 @@ import 'package:day15/features/users/widgets/users_reply_timeline.dart';
 import 'package:day15/features/users/widgets/users_thread_timeline.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
-class UserProfileScreen extends StatefulWidget {
+class UserProfileScreen extends ConsumerStatefulWidget {
   static const routeUrl = "/profile";
   static const routeName = "profile";
   const UserProfileScreen({super.key});
 
   @override
-  State<UserProfileScreen> createState() => _UserProfileScreenState();
+  UserProfileScreenState createState() => UserProfileScreenState();
 }
 
-class _UserProfileScreenState extends State<UserProfileScreen> {
+class UserProfileScreenState extends ConsumerState<UserProfileScreen> {
   void _onBarPressed() {
     context.pushNamed(SettingsScreen.routeName);
   }

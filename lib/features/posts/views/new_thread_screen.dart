@@ -3,19 +3,22 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/posts/camera_screen.dart';
+import 'package:day15/features/posts/view_models/timeline_view_model.dart';
+import 'package:day15/features/posts/view_models/upload_thread_view_model.dart';
+import 'package:day15/features/posts/views/camera_screen.dart';
 import 'package:day15/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class NewThreadScreen extends StatefulWidget {
+class NewThreadScreen extends ConsumerStatefulWidget {
   const NewThreadScreen({super.key});
 
   @override
-  State<NewThreadScreen> createState() => _NewThreadScreenState();
+  NewThreadScreenState createState() => NewThreadScreenState();
 }
 
-class _NewThreadScreenState extends State<NewThreadScreen> {
+class NewThreadScreenState extends ConsumerState<NewThreadScreen> {
   final TextEditingController _threadController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -52,7 +55,7 @@ class _NewThreadScreenState extends State<NewThreadScreen> {
     Navigator.of(context).pop();
   }
 
-  void _onPostTap() async {
+  void _onClipTap() async {
     final images = await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => CameraScreen(),
@@ -63,6 +66,12 @@ class _NewThreadScreenState extends State<NewThreadScreen> {
       _isImage = _images.isNotEmpty;
       setState(() {});
     }
+  }
+
+  Future<void> _onUploadTap() async {
+    ref.read(uploadThreadProvider.notifier).uploadThread(
+        _isImage ? File(_images[0].path) : null, _thread, context);
+    return ref.watch(timelineProvider.notifier).refresh();
   }
 
   void _imageDelete(XFile image) {
@@ -160,7 +169,7 @@ class _NewThreadScreenState extends State<NewThreadScreen> {
                             Expanded(
                               flex: 1,
                               child: Text(
-                                "jane_mobbin",
+                                "anonymous",
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
@@ -215,7 +224,7 @@ class _NewThreadScreenState extends State<NewThreadScreen> {
                                   ],
                                 ),
                             GestureDetector(
-                              onTap: _onPostTap,
+                              onTap: _onClipTap,
                               child: FaIcon(
                                 FontAwesomeIcons.paperclip,
                                 color: Colors.black38,
@@ -255,12 +264,15 @@ class _NewThreadScreenState extends State<NewThreadScreen> {
                   AnimatedOpacity(
                     opacity: _thread.isEmpty ? 0.5 : 1,
                     duration: Duration(milliseconds: 200),
-                    child: Text(
-                      "Post",
-                      style: TextStyle(
-                        fontSize: Sizes.size16,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: _onUploadTap,
+                      child: Text(
+                        "Post",
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

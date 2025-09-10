@@ -1,6 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/posts/widgets/image_carousel.dart';
+import 'package:day15/features/posts/views/widgets/image_carousel.dart';
 import 'package:day15/utils.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';

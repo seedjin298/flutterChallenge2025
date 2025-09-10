@@ -1,6 +1,6 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
-import 'package:day15/features/posts/widgets/search_list_tile.dart';
+import 'package:day15/features/posts/views/widgets/search_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
