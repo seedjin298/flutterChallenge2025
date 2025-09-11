@@ -33,6 +33,26 @@ class ThreadsRepository {
       return query.startAfter([lastItemCreatedAt]).get();
     }
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> searchCreatorThreads(
+    String keyword,
+  ) async {
+    final threadsRef = _db.collection("threads");
+    return threadsRef
+        .where("creator", isGreaterThanOrEqualTo: keyword)
+        .where("creator", isLessThanOrEqualTo: "$keyword\uf8ff")
+        .get();
+  }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> searchSentenceThreads(
+    String keyword,
+  ) async {
+    final threadsRef = _db.collection("threads");
+    return threadsRef
+        .where("sentence", isGreaterThanOrEqualTo: keyword)
+        .where("sentence", isLessThanOrEqualTo: "$keyword\uf8ff")
+        .get();
+  }
 }
 
 final threadsRepo = Provider(

@@ -1,23 +1,40 @@
 import 'package:day15/constants/gaps.dart';
 import 'package:day15/constants/sizes.dart';
+import 'package:day15/features/posts/models/thread_model.dart';
+import 'package:day15/features/posts/view_models/thread_search_view_model.dart';
 import 'package:day15/features/posts/views/widgets/search_list_tile.dart';
+import 'package:day15/features/posts/views/widgets/thread.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   static const routeUrl = "/search";
   static const routeName = "search";
 
   const SearchScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  SearchScreenState createState() => SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class SearchScreenState extends ConsumerState<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
-  void _onSearchSubmitted(String value) {}
+  List<ThreadModel> _list = [];
+  bool _isSearching = false;
+
+  void _onSearchSubmitted(String value) async {
+    _list = await ref.watch(threadSearchProvider.notifier).searchThreads(value);
+    _isSearching = true;
+    setState(() {});
+  }
+
+  void _onSuffixTap() {
+    _isSearching = false;
+    _searchController.text = "";
+    setState(() {});
+  }
 
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
@@ -56,14 +73,28 @@ class _SearchScreenState extends State<SearchScreen> {
                   controller: _searchController,
                   autocorrect: false,
                   onSubmitted: _onSearchSubmitted,
+                  onSuffixTap: _onSuffixTap,
                 ),
               ),
               Gaps.v10,
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) =>
-                      SearchListTile(),
+                  itemCount: _isSearching ? _list.length : 10,
+                  itemBuilder: (BuildContext context, int index) => _isSearching
+                      ? Column(
+                          children: [
+                            Thread(
+                              threadData: _list[index],
+                            ),
+                            Gaps.v16,
+                            Divider(
+                              height: 0,
+                              thickness: 1,
+                            ),
+                            Gaps.v16,
+                          ],
+                        )
+                      : SearchListTile(),
                 ),
               ),
             ],
